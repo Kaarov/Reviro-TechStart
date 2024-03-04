@@ -98,6 +98,41 @@ DATABASES = {
     }
 }
 
+# REST FRAMEWORK
+DEFAULT_DATE_FORMAT = "%Y-%m-%d"
+DEFAULT_TIME_FORMAT = "%H:%M"
+DEFAULT_DATETIME_FORMAT = f"{DEFAULT_DATE_FORMAT}T{DEFAULT_TIME_FORMAT}"
+REST_FRAMEWORK = {
+    "DEFAULT_PAGINATION_CLASS": "config.pagination.Pagination",
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+    "EXCEPTION_HANDLER": "config.exceptions.drf_exception_handler",
+    "TEST_REQUEST_DEFAULT_FORMAT": "json",
+    "TIME_FORMAT": DEFAULT_TIME_FORMAT,
+    "TIME_INPUT_FORMATS": [DEFAULT_TIME_FORMAT],
+    "DATE_FORMAT": DEFAULT_DATE_FORMAT,
+    "DATE_INPUT_FORMATS": [DEFAULT_DATE_FORMAT],
+    "DATETIME_FORMAT": DEFAULT_DATETIME_FORMAT,
+    "DATETIME_INPUT_FORMATS": [DEFAULT_DATETIME_FORMAT],
+}
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Reviro documentation",
+    "VERSION": "0.0.1",
+    "SCHEMA_PATH_PREFIX": "/api/v[0-9]",
+    "SCHEMA_PATH_PREFIX_TRIM": False,
+    "SERVE_INCLUDE_SCHEMA": False,
+    "COMPONENT_SPLIT_REQUEST": True,  # convert "string image" to "binary image"
+    "SWAGGER_UI_SETTINGS": {
+        "defaultModelExpandDepth": 3,
+        "defaultModelRendering": "model",
+        "filter": True,
+        "showCommonExtensions": True,
+        "persistAuthorization": True,
+        "displayOperationId": True,
+        "deepLinking": True,
+        "docExpansion": "none",
+    },
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
