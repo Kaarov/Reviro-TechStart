@@ -25,6 +25,7 @@ from drf_spectacular.views import SpectacularSwaggerView
 
 api_urls = [
     path("product/", include("product.urls")),
+    path("establishment/", include("establishment.urls")),
 ]
 
 docs_urls = [
