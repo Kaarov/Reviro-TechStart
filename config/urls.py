@@ -22,10 +22,6 @@ from django.conf.urls.static import static
 from drf_spectacular.views import SpectacularAPIView
 from drf_spectacular.views import SpectacularSwaggerView
 
-
-api_urls = [
-]
-
 docs_urls = [
     path("schema/", SpectacularAPIView.as_view(), name="schema"),
     path(
@@ -42,7 +38,10 @@ admin_urls = [
 ]
 
 urlpatterns = [
-    path("api/", include((api_urls, "api"), namespace="api")),
+    path("users/", include("users.urls")),
+    path("product/", include("product.urls")),
+    path("establishment/", include("establishment.urls")),
+    path("attributes/", include("attributes.urls")),
     path("", include(docs_urls)),
     path("", include(admin_urls)),
     *static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT),
